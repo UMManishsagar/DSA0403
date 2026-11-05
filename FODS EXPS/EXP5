@@ -1,0 +1,19 @@
+import pandas as pd
+
+data = {
+    "make": ["Mazda", "Mazda", "Mazda", "Mazda", "Mazda",
+             "Ford", "Ford", "Ford", "Ford", "Ford"],
+    "highway_mpg(Fuel Efficiency)": [36, 37, 37, 39, 35,
+                                     29, 30, 24, 25, 23]
+}
+
+df = pd.DataFrame(data)
+
+mazda = df[df["make"] == "Mazda"]["highway_mpg(Fuel Efficiency)"].mean()
+ford = df[df["make"] == "Ford"]["highway_mpg(Fuel Efficiency)"].mean()
+
+improvement = ((mazda - ford) / ford) * 100
+
+print("Mazda average:", mazda)
+print("Ford average:", ford)
+print("Percentage improvement:", round(improvement, 2), "%")

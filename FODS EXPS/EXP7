@@ -1,0 +1,45 @@
+
+from datetime import datetime
+
+customer = [101, 102, 101, 103, 102, 104, 101, 105, 103, 102,
+            104, 105, 101, 103, 102, 104, 105, 101, 103, 102]
+
+product = ["Laptop", "Mouse", "Mouse", "Keyboard", "Laptop",
+           "Phone", "Laptop", "Mouse", "Keyboard", "Phone",
+           "Laptop", "Keyboard", "Mouse", "Phone", "Laptop",
+           "Mouse", "Phone", "Keyboard", "Laptop", "Mouse"]
+
+quantity = [1, 2, 3, 1, 2, 1, 1, 4, 2, 1,
+            2, 3, 2, 1, 1, 2, 2, 1, 3, 4]
+
+date = ["2026-01-10", "2026-01-12", "2026-01-15",
+        "2026-01-08", "2026-01-20", "2026-01-05",
+        "2026-01-18", "2026-01-22", "2026-01-09",
+        "2026-01-25", "2026-01-14", "2026-01-17",
+        "2026-01-11", "2026-01-28", "2026-01-19",
+        "2026-01-23", "2026-01-26", "2026-01-07",
+        "2026-01-30", "2026-01-16"]
+
+# 1. Total orders by each customer
+print("Total Orders by Each Customer:")
+for c in sorted(set(customer)):
+    print("Customer", c, ":", customer.count(c))
+
+# 2. Average order quantity for each product
+print("\nAverage Quantity for Each Product:")
+for p in sorted(set(product)):
+    total = 0
+    count = 0
+
+    for i in range(len(product)):
+        if product[i] == p:
+            total += quantity[i]
+            count += 1
+
+    print(p, ":", round(total / count, 2))
+
+# 3. Earliest and latest order dates
+dates = [datetime.strptime(d, "%Y-%m-%d") for d in date]
+
+print("\nEarliest Order Date:", min(dates).date())
+print("Latest Order Date:", max(dates).date())

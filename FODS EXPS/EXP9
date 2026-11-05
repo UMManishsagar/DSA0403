@@ -1,0 +1,65 @@
+import pandas as pd
+
+data = {
+    "Property_ID": list(range(101, 151)),
+    "Location": [
+        "Chennai", "Mumbai", "Delhi", "Chennai", "Pune",
+        "Mumbai", "Delhi", "Chennai", "Pune", "Mumbai",
+        "Delhi", "Chennai", "Pune", "Mumbai", "Delhi",
+        "Chennai", "Pune", "Mumbai", "Delhi", "Chennai",
+        "Pune", "Mumbai", "Delhi", "Chennai", "Pune",
+        "Mumbai", "Delhi", "Chennai", "Pune", "Mumbai",
+        "Delhi", "Chennai", "Pune", "Mumbai", "Delhi",
+        "Chennai", "Pune", "Mumbai", "Delhi", "Chennai",
+        "Pune", "Mumbai", "Delhi", "Chennai", "Pune",
+        "Mumbai", "Delhi", "Chennai", "Pune", "Mumbai"
+    ],
+    "Bedrooms": [
+        2, 3, 4, 5, 2, 3, 6, 4, 3, 5,
+        2, 4, 5, 3, 6, 2, 4, 5, 3, 4,
+        6, 2, 5, 3, 4, 6, 2, 5, 3, 4,
+        5, 2, 6, 3, 4, 5, 2, 3, 6, 4,
+        5, 3, 2, 6, 4, 5, 3, 2, 6, 4
+    ],
+    "Area": [
+        1200, 1500, 1800, 2200, 1100,
+        1600, 2500, 1900, 1400, 2100,
+        1300, 1700, 2300, 1550, 2600,
+        1250, 1850, 2400, 1450, 1950,
+        2700, 1350, 2250, 1650, 2050,
+        2800, 1150, 2350, 1750, 2150,
+        2450, 1050, 2900, 1500, 2000,
+        2550, 1250, 1600, 2750, 1850,
+        2250, 1450, 1200, 3000, 1900,
+        2400, 1550, 1300, 2850, 2100
+    ],
+    "Price": [
+        4500000, 6000000, 7500000, 9000000, 4000000,
+        6500000, 11000000, 8000000, 5000000, 8500000,
+        4200000, 7000000, 9500000, 6200000, 12000000,
+        4300000, 7800000, 10000000, 5500000, 8200000,
+        12500000, 4600000, 9200000, 6800000, 8700000,
+        13000000, 3900000, 9800000, 7200000, 8900000,
+        10500000, 3800000, 14000000, 6300000, 8400000,
+        11500000, 4400000, 6700000, 13500000, 7900000,
+        9300000, 5600000, 4100000, 15000000, 8100000,
+        10200000, 6400000, 4300000, 14500000, 8800000
+    ]
+}
+
+df = pd.DataFrame(data)
+
+print("PROPERTY DATA:")
+print(df)
+
+print("\nAverage Price by Location:")
+print(df.groupby("Location")["Price"].mean())
+
+print("\nProperties with More Than 4 Bedrooms:")
+print(df[df["Bedrooms"] > 4])
+
+print("\nNumber of Properties with More Than 4 Bedrooms:")
+print(len(df[df["Bedrooms"] > 4]))
+
+print("\nProperty with Largest Area:")
+print(df.loc[df["Area"].idxmax()])

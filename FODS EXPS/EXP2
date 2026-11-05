@@ -1,0 +1,10 @@
+import numpy as np
+
+price = np.array([
+    267.22, 4209.44, 371.40, 4467.75, 692.71,
+    1106.51, 2624.09, 3964.65, 1095.45, 2682.34
+])
+
+average = np.mean(price)
+
+print("Average price:", round(average, 2))

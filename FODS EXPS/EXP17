@@ -1,0 +1,120 @@
+
+import re
+from collections import Counter
+import matplotlib.pyplot as plt
+
+# Customer feedback dataset
+feedback = [
+    "The product quality is excellent and the delivery was very fast.",
+    "I love this product because it is easy to use and affordable.",
+    "The customer service was very helpful and friendly.",
+    "The product quality is poor and the price is too high.",
+    "I am very happy with the product and its performance.",
+    "The delivery was late but the product quality is good.",
+    "Excellent product with amazing features and great quality.",
+    "The product is not worth the money and I am disappointed.",
+    "Customer support is helpful and solves problems quickly.",
+    "Very good product with excellent customer service.",
+    "The product is easy to use and works perfectly.",
+    "I received a damaged product and the packaging was poor.",
+    "The price is reasonable and the quality is excellent.",
+    "Amazing shopping experience with fast delivery.",
+    "I am disappointed with the product performance.",
+    "The product design is beautiful and very attractive.",
+    "The delivery service is fast and reliable.",
+    "Good quality product at an affordable price.",
+    "Customer service responded quickly to my complaint.",
+    "The product stopped working after a few days.",
+    "I really love the quality and performance of this product.",
+    "The packaging was excellent and delivery was very fast.",
+    "The product is expensive but the quality is amazing.",
+    "Very poor customer service and delayed delivery.",
+    "This product is useful and easy to operate.",
+    "I am satisfied with the product and its features.",
+    "The quality is average and the price is expensive.",
+    "Excellent customer support and wonderful shopping experience.",
+    "The product arrived on time and works perfectly.",
+    "I would recommend this product to my friends.",
+    "The product is not user friendly and difficult to operate.",
+    "Very happy with the fast delivery and good packaging.",
+    "The product quality is excellent but customer support is poor.",
+    "Affordable price and outstanding product performance.",
+    "I received the wrong product and customer service was slow.",
+    "The product has amazing features and excellent design.",
+    "Great experience with fast shipping and good quality.",
+    "The product is worth buying because it is reliable.",
+    "Poor packaging but the product itself is very good.",
+    "I love the customer service and the product quality.",
+    "The application is simple and easy to understand.",
+    "The website is slow and difficult to navigate.",
+    "The product is useful, reliable and affordable.",
+    "Excellent quality and fast delivery every time.",
+    "I am unhappy because the product was damaged.",
+    "The customer support team solved my issue quickly.",
+    "The product works well and has amazing features.",
+    "Good service, reasonable price and excellent quality.",
+    "I will definitely purchase this product again.",
+    "The delivery was quick and the product was perfect.",
+    "The product is expensive but performs very well.",
+    "Bad experience because customer service was not helpful.",
+    "I am completely satisfied with the product quality.",
+    "The product is attractive, durable and easy to use.",
+    "Fast delivery, good packaging and excellent service.",
+    "The product stopped working and needs improvement.",
+    "Very affordable product with wonderful features.",
+    "Customer service is friendly and responds quickly.",
+    "The quality is excellent and the price is reasonable.",
+    "I recommend this product because it is very useful."
+]
+
+# Stop words
+stop_words = {
+    "the", "is", "and", "a", "an", "to", "of", "in", "it",
+    "was", "very", "with", "this", "that", "for", "on",
+    "my", "i", "am", "are", "but", "because", "its", "be",
+    "not", "has", "have", "had", "after", "at", "too",
+    "will", "would", "me", "we", "our", "they", "their",
+    "by", "from", "as", "or", "if", "so", "well", "again"
+}
+
+# Combine all feedback
+all_text = " ".join(feedback)
+
+# Convert to lowercase
+all_text = all_text.lower()
+
+# Remove punctuation and extract words
+words = re.findall(r'\b[a-z]+\b', all_text)
+
+# Remove stop words
+filtered_words = [word for word in words if word not in stop_words]
+
+# Calculate word frequency
+word_frequency = Counter(filtered_words)
+
+# Get N from user
+n = int(input("Enter the number of top words: "))
+
+# Display top N words
+top_words = word_frequency.most_common(n)
+
+print("\nTOP", n, "MOST FREQUENT WORDS")
+print("--------------------------------")
+
+for word, count in top_words:
+    print(word, ":", count)
+
+# Plot bar graph
+if top_words:
+    words_list = [item[0] for item in top_words]
+    counts_list = [item[1] for item in top_words]
+
+    plt.bar(words_list, counts_list)
+    plt.xlabel("Words")
+    plt.ylabel("Frequency")
+    plt.title("Top N Frequent Words in Customer Feedback")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+else:
+    print("No words available to plot.")

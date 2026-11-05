@@ -1,0 +1,32 @@
+import numpy as np
+
+# Sales data: Month, Total sales
+sales = np.array([
+    [2, 5053.97],
+    [4, 4384.02],
+    [9, 4631.23],
+    [8, 2167.94],
+    [3, 3750.20],
+    [2, 3761.15],
+    [4, 618.31],
+    [1, 7698.92],
+    [6, 4223.39],
+    [10, 8239.58],
+    [11, 8518.45],
+    [8, 2198.74],
+    [11, 6607.80],
+    [12, 4775.59]
+])
+
+total_sales = np.sum(sales[:, 1])
+
+q1 = np.sum(sales[np.isin(sales[:, 0], [1, 2, 3]), 1])
+q4 = np.sum(sales[np.isin(sales[:, 0], [10, 11, 12]), 1])
+
+print("Total yearly sales:", round(total_sales, 2))
+print("Q1 sales:", round(q1, 2))
+print("Q4 sales:", round(q4, 2))
+
+if q1 != 0:
+    increase = ((q4 - q1) / q1) * 100
+    print("Percentage change:", round(increase, 2), "%")

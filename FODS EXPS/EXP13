@@ -1,0 +1,71 @@
+from collections import Counter
+import matplotlib.pyplot as plt
+
+text = """
+Python is a popular programming language.
+Python is widely used in data science and machine learning.
+Data science is used to analyze large datasets.
+Machine learning helps computers learn from data.
+Python provides many libraries for data analysis.
+Data analysis is important for business decisions.
+Machine learning is used in healthcare and education.
+Python is easy to learn and easy to understand.
+Data science combines statistics programming and visualization.
+Python is useful for artificial intelligence.
+Artificial intelligence uses machine learning algorithms.
+Machine learning algorithms analyze patterns in data.
+Python supports NumPy Pandas Matplotlib and Scikit learn.
+Pandas is used for data manipulation and analysis.
+NumPy is used for numerical calculations.
+Matplotlib is used for data visualization.
+Data visualization helps understand information easily.
+Python programming is useful for students and researchers.
+Data science helps organizations make better decisions.
+Machine learning improves prediction and classification.
+Python is one of the most popular programming languages.
+Python is used in web development and automation.
+Data analysis helps identify trends and patterns.
+Artificial intelligence is growing rapidly.
+Machine learning is an important part of artificial intelligence.
+Python makes programming simple and powerful.
+Data science uses programming statistics and mathematics.
+Python is widely used in research projects.
+Machine learning is used for image recognition.
+Data analysis is useful in every industry.
+Python supports artificial intelligence applications.
+Data science is a growing technology.
+Programming helps solve real world problems.
+Python is useful for beginners and professionals.
+Machine learning helps predict future results.
+"""
+
+# Convert into lowercase
+words = text.lower().split()
+
+# Remove punctuation
+clean_words = []
+
+for word in words:
+    word = word.strip(".,!?")
+    clean_words.append(word)
+
+# Calculate frequency
+frequency = Counter(clean_words)
+
+print("Word Frequency Distribution:")
+
+for word, count in frequency.most_common():
+    print(word, ":", count)
+
+# Display top 10 words
+top_words = frequency.most_common(10)
+
+words = [x[0] for x in top_words]
+counts = [x[1] for x in top_words]
+
+plt.bar(words, counts)
+plt.title("Top 10 Most Frequent Words")
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.xticks(rotation=45)
+plt.show()

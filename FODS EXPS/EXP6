@@ -1,0 +1,64 @@
+# Item names, prices and quantities
+
+items = [
+    ("Rice", 60, 5),
+    ("Wheat", 45, 3),
+    ("Sugar", 50, 4),
+    ("Milk", 30, 10),
+    ("Oil", 150, 2),
+    ("Soap", 40, 6),
+    ("Shampoo", 120, 2),
+    ("Biscuits", 25, 8),
+    ("Tea Powder", 180, 2),
+    ("Coffee", 250, 1),
+    ("Salt", 20, 5),
+    ("Toothpaste", 90, 3),
+    ("Detergent", 110, 2),
+    ("Bread", 40, 4),
+    ("Eggs", 7, 30),
+    ("Butter", 55, 3),
+    ("Cheese", 100, 2),
+    ("Juice", 35, 6),
+    ("Apple", 120, 3),
+    ("Banana", 50, 5),
+    ("Potato", 30, 4),
+    ("Onion", 40, 5),
+    ("Tomato", 35, 6),
+    ("Carrot", 45, 3),
+    ("Chicken", 220, 2),
+    ("Fish", 180, 2),
+    ("Biscuits", 30, 5),
+    ("Cornflakes", 160, 2),
+    ("Oats", 140, 2),
+    ("Honey", 200, 1)
+]
+
+discount_rate = 10
+tax_rate = 5
+
+total = 0
+
+print("GROCERY BILL")
+print("--------------------------------")
+
+for item, price, quantity in items:
+    cost = price * quantity
+    total += cost
+
+    print(item, "-", quantity, "x", price, "=", cost)
+
+print("--------------------------------")
+
+discount = total * discount_rate / 100
+
+after_discount = total - discount
+
+tax = after_discount * tax_rate / 100
+
+final_amount = after_discount + tax
+
+print("Total Amount:", total)
+print("Discount:", discount)
+print("Amount After Discount:", after_discount)
+print("Tax:", tax)
+print("Final Amount:", final_amount)
